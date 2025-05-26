@@ -9,7 +9,7 @@ export default function InputFocus(){
 
     }
     return(
-        <View>
+        <View style={{padding:100}}>
             <TextInput ref={InputRef} placeholder="type here" />
             <Button title="Focus" onPress={focusInput}/>
             

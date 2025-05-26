@@ -6,16 +6,32 @@ import VideoPlayer from './video';
 import Counter from './state'
 import Login_page from "./login";
 import Dash from "./dashboard";
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from "@react-navigation/native";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import InputFocus from "./useref";
-const Stack =createNativeStackNavigator();
+import req_page from "./register";
+
+
+export type RootStackParamlist ={
+  Login:undefined;
+  home:undefined;
+  register:undefined;
+}
+
+const Stack =createNativeStackNavigator<RootStackParamlist>();
+
 
 const App = () =>{
   return(
-   <View>
-    <InputFocus/>
-   </View>s
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+         <Stack.Screen name="Login" component={Login_page}/>
+         <Stack.Screen name="home" component={Dash}/>
+         <Stack.Screen name="register" component={req_page}/>
+      </Stack.Navigator>
+     
+       
+    </NavigationContainer>
   )
    
 };

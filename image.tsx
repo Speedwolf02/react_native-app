@@ -1,6 +1,6 @@
 import React from "react";
-import{View,  Text, Image, StyleSheet}from 'react-native'
-
+import{View, Text, Image, StyleSheet}from 'react-native'
+import Video from "react-native-video";
 
 const ImageComponent = () =>{
     return(
@@ -16,10 +16,6 @@ const ImageComponent = () =>{
             <Text style={styles.txt2}>
                 In the heart of a midnight forest bathed in darkness, a creature of electric light prowls beneath the canopy — the Neon Wolf. Unlike any predator of the natural world, its fur shimmers with an iridescent glow, threads of violet, cyan, and magenta pulsing like the heartbeat of a distant galaxy. Its eyes burn like twin moons, casting faint glows onto the forest floor with every deliberate step.
             </Text>
-            <Text style={styles.txt1}>
-                Sample video
-            </Text>
-            <Video source={require('./videoplayback.mp4')}/>
 
         </View>
     )

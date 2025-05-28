@@ -1,15 +1,17 @@
 import React from "react";
-import { View,Text,StyleSheet } from "react-native";
-import {name,password} from './login'
+import { View,Text,StyleSheet,Button } from "react-native";
+import Id_card from "./datafetch";
 
 
 
-export default function Dash(){
+
+const Dash = ({navigation}) => {
     return(
         <View style={{padding:100}}>
             <Text style={styles.txt}>
                 welcome to dash board
             </Text>
+            <Button title="click here" onPress={() => navigation.navigate('data')} ></Button>
         </View>
     )
     
@@ -21,5 +23,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 50,
   },
+
 }
 )
+export default Dash;

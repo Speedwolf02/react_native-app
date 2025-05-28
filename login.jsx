@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamlist } from "./App";
+import {View,Text,StyleSheet,TextInput,TouchableOpacity} from "react-native";
 
-type Props = NativeStackScreenProps<RootStackParamlist, "Login">;
 
-const Login_page: React.FC<Props> = ({ navigation }) => {
+const Login_page = ({ navigation }) => {
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handle_log =() =>{
+    if (name !=null & name=="saran" & password !=null & password=="saran123")
+    {
+      navigation.navigate('home')
+    }
+    else{
+      setError("enter correct credentials")
+    }
+  }
 
   return (
     <View style={styles.vw}>
@@ -33,9 +35,10 @@ const Login_page: React.FC<Props> = ({ navigation }) => {
         onChangeText={setPassword}
         value={password}
       />
-
+      {error? <Text style={styles.tst}>{error}</Text> : null}
+      
       <TouchableOpacity
-        onPress={() => navigation.navigate('home')}
+        onPress={handle_log }
         style={styles.btn}
       >
         <Text style={styles.txt1}>Login Now</Text>
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 300,
     padding: 10,
-    marginBottom: 55,
+    marginBottom: 5,
   },
   btn: {
     backgroundColor: "rgb(8, 216, 243)",
@@ -92,6 +95,11 @@ const styles = StyleSheet.create({
     color: "blue",
     textDecorationLine: "underline",
   },
+  tst:{
+    color:"red",
+    marginRight:150,
+    marginBottom:55,
+  }
 });
 
 export default Login_page;

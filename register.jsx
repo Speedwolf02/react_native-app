@@ -1,12 +1,10 @@
 import React from "react";
 import { Text, View, TouchableOpacity ,TextInput, StyleSheet } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamlist } from "./App";
-
-type Props = NativeStackScreenProps<RootStackParamlist, "register">;
 
 
-const req_page : React.FC<Props> = ({ navigation }) => {
+
+const req_page = ({navigation}) => {
     return(
         <View style={styles.vw}>
             <Text style={styles.txt}>

@@ -10,15 +10,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import InputFocus from "./useref";
 import req_page from "./register";
+import Id_card from "./datafetch";
 
 
-export type RootStackParamlist ={
-  Login:undefined;
-  home:undefined;
-  register:undefined;
-}
 
-const Stack =createNativeStackNavigator<RootStackParamlist>();
+const Stack =createNativeStackNavigator();
 
 
 const App = () =>{
@@ -28,6 +24,7 @@ const App = () =>{
          <Stack.Screen name="Login" component={Login_page}/>
          <Stack.Screen name="home" component={Dash}/>
          <Stack.Screen name="register" component={req_page}/>
+         <Stack.Screen name="data" component={Id_card}/>
       </Stack.Navigator>
      
        

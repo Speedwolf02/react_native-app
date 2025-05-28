@@ -1,0 +1,103 @@
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+
+const Fetchdata = () => {
+  const [input, setInput] = useState(""); 
+  const [users, setUsers] = useState(null); // all users
+  const [selectedUser, setSelectedUser] = useState(null); 
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((json) => {
+        setUsers(json);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  const Display = () => {
+    if (users) {
+      const found = users.find((user) => user.id === parseInt(input));
+      setSelectedUser(found || null);
+    }
+  };
+
+  return (
+    <View style={styles.vw}>
+      <View style={styles.vw2}>
+        <Text style={styles.txt2}>Enter user id:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setInput}
+          placeholder="Enter the ID"
+          value={input}
+          keyboardType="numeric"
+        />
+      </View>
+      <View style={styles.vw1}>
+        <TouchableOpacity onPress={Display} style={styles.btn}>
+          <Text style={styles.txt1}>Show Details</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ padding: 20 }}>
+        {selectedUser ? (
+          <View>
+            <Text>Username: {selectedUser.username}</Text>
+            <Text>Address: {selectedUser.address.city}</Text>
+          </View>
+        ) : (
+          <Text>Enter a valid ID and press Show Details</Text>
+        )}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  vw: {
+    padding: 30,
+  },
+  txt2: {
+    fontWeight: "bold",
+    marginTop: 0,
+  },
+  input: {
+    borderWidth: 1,
+    width: 200,
+    marginLeft: 20,
+    height: 40,
+    paddingHorizontal: 10,
+  },
+  vw1: {
+    marginTop: 20,
+    marginRight: 200,
+  },
+  vw2: {
+    marginTop: 20,
+    flex: 1,
+    flexDirection: "row",
+  },
+  btn: {
+    backgroundColor: "rgb(8, 216, 243)",
+    width: 150,
+    padding: 10,
+    borderRadius: 20,
+    alignItems: "center",
+    marginLeft: 100,
+  },
+  txt1: {
+    fontWeight: "bold",
+    color: "#fff",
+  },
+});
+
+export default Fetchdata;
+<Text>Username: {selectedUser.username}</Text>
+            <Text>Address: {selectedUser.address.city}</Text>

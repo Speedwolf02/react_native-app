@@ -1,25 +1,49 @@
-import React from "react";
+import React,{useState} from "react";
 import { Text, View, TouchableOpacity ,TextInput, StyleSheet } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
 
 const req_page = ({navigation}) => {
+  const[email,setEmail]=useState(null)
+  const[pass,setPassword]=useState(null)
+  const[mob,setNumber]=useState(null)
+  const[err,setError]=useState('')
+
+  const Han_reg = ()=>{
+    if (email,pass,mob !=null){
+      navigation.navigate('home')
+    }
+    else{
+      setError("*enter the all details")
+      console.error("enter all details correctly")
+    }
+  }
     return(
         <View style={styles.vw}>
             <Text style={styles.txt}>
                 Register form
             </Text>
-            <TextInput style={styles.input} 
+            <TextInput style={styles.input}
+            onChangeText={setEmail} 
+            value={email}
             placeholder="enter your email id"/>
             <TextInput
             style={styles.pass}
             secureTextEntry
+            onChangeText={setPassword}
+            value={pass}
             placeholder="enter your pass"/>
             <TextInput
             style={styles.mn}
+            onChangeText={setNumber}
+            value={mob}
+            keyboardType="numeric"
             placeholder="enter your number"/>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('home')}>
+            if(err){
+              <Text style={{marginTop:-40,marginRight:140,marginBottom:40,fontSize:18,color:"red"}}>{err}</Text>
+            }
+            <TouchableOpacity style={styles.btn} onPress={Han_reg}>
                 <Text style={styles.txt1}>
                     Register now
                 </Text>

@@ -1,12 +1,30 @@
-import React, { useEffect, useState } from "react";
-import {Text,TextInput,View,TouchableOpacity,StyleSheet, Image} from "react-native";
+import React, { useEffect, useState,useRef } from "react";
+import {Text,TextInput,View,TouchableOpacity,StyleSheet, Image,Animated, Pressable} from "react-native";
 import img from './im2.jpg'
 import im2 from './im3.jpg'
+import { transformer } from "./metro.config";
 
 const Fetchdata = () => {
   const [input, setInput] = useState(""); 
   const [users, setUsers] = useState(null); 
   const [user, setSelectedUser] = useState(null); 
+ const rotation = useRef(new Animated.Value(0)).current;
+
+  const rotate = () => {
+    Animated.timing(rotation, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start(() => {
+      rotation.setValue(0); // reset for next tap
+    });
+  };
+
+  const rotateInterpolate = rotation.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -44,6 +62,8 @@ const Fetchdata = () => {
 
       <View style={{ padding: 20 }}>
         {user ? (
+          <Pressable onPress={rotate}>
+            <Animated.View style={{transform:[{rotate: rotateInterpolate}]}}/>
           <View style={styles.vw4}>
             <View style={{backgroundColor:"blue",paddingBottom:30 ,paddingTop:10}} >
               <Image style={{width:50,height:50,borderRadius:50,marginLeft:130}} source={img}/>
@@ -65,11 +85,13 @@ const Fetchdata = () => {
             </Text>
             </View>
           </View>
+           </Pressable>
         ) : (
           <Text style={{marginTop:30,color:"red", marginLeft:30}}>Enter a valid ID and press Show Details</Text>
         )}
       </View>
     </View>
+   
   );
 };
 

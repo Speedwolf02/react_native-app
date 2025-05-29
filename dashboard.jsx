@@ -7,22 +7,38 @@ import Id_card from "./datafetch";
 
 const Dash = ({navigation}) => {
     return(
-        <View style={{padding:100}}>
+        <View style={{padding:10}}>
+            <View>
             <Text style={styles.txt}>
-                welcome to dash board
+                Welcome To Our App
             </Text>
-            <Button title="click here" onPress={() => navigation.navigate('data')} ></Button>
+            </View>
+            <View style={{marginRight:190}}>
+              <Text style={styles.txt1}>Check user details</Text>
+              <Button title="click here" onPress={() => navigation.navigate('data')} ></Button>
+            </View>
+            <View style={{marginRight:190}}>
+              <Text style={styles.txt1}>Check Table</Text>
+              <Button title="click here" onPress={() => navigation.navigate('table')} ></Button>
+            </View>
         </View>
+
     )
     
 }
 const styles = StyleSheet.create({
   txt: {
-    fontSize: 20,
+    fontSize: 25,
     textAlign: "center",
     fontWeight: "bold",
-    marginTop: 50,
+    marginTop: 40,
+    marginBottom:90
   },
+  txt1:{
+    fontSize:20,
+    marginBottom:10,
+    marginTop:10,
+  }
 
 }
 )

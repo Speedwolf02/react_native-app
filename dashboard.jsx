@@ -21,6 +21,10 @@ const Dash = ({navigation}) => {
               <Text style={styles.txt1}>Check Table</Text>
               <Button title="click here" onPress={() => navigation.navigate('table')} ></Button>
             </View>
+             <View style={{marginRight:190}}>
+              <Text style={styles.txt1}>Check game</Text>
+              <Button title="click here" onPress={() => navigation.navigate('test')} ></Button>
+            </View>
         </View>
 
     )

@@ -12,6 +12,7 @@ import InputFocus from "./useref";
 import req_page from "./register";
 import Id_card from "./datafetch";
 import Table_pg from "./table";
+import Game from "./pro";
 
 
 const Stack =createNativeStackNavigator();
@@ -26,7 +27,7 @@ const App = () =>{
          <Stack.Screen name="home" component={Dash}/>
          <Stack.Screen name="register" component={req_page}/>
          <Stack.Screen name="data" component={Id_card}/>
-         <Stack.Screen name='table' component={Table_pg}/>
+         <Stack.Screen name='test' component={Game}/>
       </Stack.Navigator>
      
        
